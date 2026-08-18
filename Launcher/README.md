@@ -1,34 +1,53 @@
-# 烬域启动器 (EmberRealm Launcher)
-
-跨平台游戏启动器，基于 Python + Tkinter，零第三方依赖。
+# 烬域：卡拉比亚战区 - 启动器
 
 ## 功能
 
-- 三大阵营选择（戍卫军 / 合约团 / 自治同盟），实时显示阵营特性
-- 指挥官代号设置
-- 分辨率、画质、全屏、音量调节
-- 游戏路径配置（支持已打包的exe直接启动）
-- 开发模式：自动定位 `.uproject` 项目文件，提示用UE5编辑器打开
-- 配置持久化（保存到 `~/.emberrealm/launcher_config.json`）
+- **启动游戏**：一键启动打包后的游戏可执行文件
+- **存档管理**：查看、删除游戏存档
+- **游戏设置**：分辨率、全屏、画质、语言、音量
+- **自动存档**：配置自动存档间隔
+- **深色主题**：军事风格UI
 
-## 运行
+## 使用方法
 
+### Windows
+双击 `启动游戏.bat` 即可运行。
+
+### 跨平台（需要 Python 3.8+）
 ```bash
-# 直接运行（需要Python 3.8+）
 python launcher.py
 ```
 
-## 打包为独立可执行文件（可选）
+## 依赖
 
-```bash
-pip install pyinstaller
-pyinstaller --onefile --windowed --name "EmberRealmLauncher" launcher.py
-```
-
-打包后可执行文件在 `dist/` 目录下。
+- Python 3.8+（仅使用标准库 tkinter，无需额外安装）
+- 游戏打包后的可执行文件（开发阶段可在UE5编辑器中直接运行）
 
 ## 配置文件
 
-启动器配置保存在：
-- Windows: `%USERPROFILE%\.emberrealm\launcher_config.json`
-- macOS/Linux: `~/.emberrealm/launcher_config.json`
+启动器设置保存在：
+```
+Saved/Config/launcher_settings.json
+```
+
+## 游戏可执行文件查找顺序
+
+启动器会在以下位置查找游戏：
+1. `Binaries/Win64/EmberRealm.exe`
+2. `Binaries/Win64/EmberRealm-Win64-Shipping.exe`
+3. 项目根目录
+
+## 开发阶段
+
+游戏尚未打包时，点击"开始游戏"会提示在UE5编辑器中打开项目：
+```
+EmberRealm.uproject
+```
+
+## 后续计划
+
+- [ ] 自动更新检查
+- [ ] 模组管理器
+- [ ] 新闻/公告面板
+- [ ] 成就展示
+- [ ] 自定义主题
