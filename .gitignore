@@ -1,0 +1,51 @@
+# UE5 generated files
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+.vs/
+.vscode/
+*.VC.db
+*.opensdf
+*.opendb
+*.sdf
+*.suo
+*.user
+*.sln
+*.xcodeproj
+*.xcworkspace
+*.workspace
+
+# Build outputs
+*.pdb
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+*.target
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+Logs/
+
+# Crash reports
+CrashReportClient/
+crashinfo/
+
+# Launcher build
+Launcher/build/
+Launcher/dist/
+Launcher/__pycache__/
+*.pyc
