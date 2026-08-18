@@ -1,51 +1,142 @@
-# UE5 generated files
+# ==================== Unreal Engine Generated Files ====================
 Binaries/
 DerivedDataCache/
 Intermediate/
 Saved/
 .vs/
 .vscode/
+.idea/
 *.VC.db
 *.opensdf
 *.opendb
 *.sdf
-*.suo
-*.user
 *.sln
+*.suo
 *.xcodeproj
 *.xcworkspace
-*.workspace
-
-# Build outputs
+*.user
+*.suo
 *.pdb
-*.obj
-*.exe
+*.idb
+*.exp
+*.lib
 *.dll
+*.exe
+*.target
+*.modules
+*.version
+*.apkx
+*.apkm
+*.a
 *.so
 *.dylib
-*.target
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# ==================== UE4/UE5 specific ====================
+# Auto-generated files
+[Bb]in/
+[Oo]bj/
+[Ii]ntermediate/
+[Bb]uild/
+[Dd]eployed/
+[Mm]akefile
+
+# Visual Studio
+.vs/
+*.sdf
+*.suo
+*.opensdf
+*.opendb
+*.VC.db
+*.VC.VC.opendb
+*.user
+*.aps
+*.pch
+*.ipch
+*.tlog
+*.log
+*.recipe
+*.rsp
+*.manifest
+*.res
+*.ilk
+*.meta
+*.pdb
+*.idb
+*.exp
+*.lib
+*.dll
+*.exe
+*.exp
+*.iobj
+*.ipdb
+
+# Xcode
+*.xcodeproj
+*.xcworkspace
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
+*.xcuserdatad
+*.moved-aside
+*.hmap
+*.dSYM
+*.dSYM.zip
+
+# CLion
+.idea/
+cmake-build-*/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# ==================== Project Specific ====================
+# Content folders that are auto-generated or too large
+Content/Developers/
+Content/Lightmass/
+Content/EditorResources/
+
+# Local config overrides
+Config/DefaultEditorPerProjectUserSettings.ini
+Config/DefaultEditorSettings.ini
+
+# Crash reports
+crashinfo/
+*.crashcontext
+*.runtime-xml
+*.crashlogs
+
+# Profiling
+*.ue4prof
+*.ue5prof
+*.raw
+*.pup
+
+# Cache
+*.bson
+*.db
+*.db-journal
 
 # OS files
 .DS_Store
 Thumbs.db
 desktop.ini
+$RECYCLE.BIN/
 
-# IDE
-.idea/
-*.swp
-*.swo
+# Backup files
+*.bak
+*.backup
 *~
 
-# Logs
-*.log
-Logs/
-
-# Crash reports
-CrashReportClient/
-crashinfo/
-
-# Launcher build
-Launcher/build/
-Launcher/dist/
-Launcher/__pycache__/
-*.pyc
+# LFS (if not using Git LFS, comment out)
+# *.uasset filter=lfs diff=lfs merge=lfs -text
+# *.umap filter=lfs diff=lfs merge=lfs -text
+# *.fbx filter=lfs diff=lfs merge=lfs -text
+# *.png filter=lfs diff=lfs merge=lfs -text
+# *.wav filter=lfs diff=lfs merge=lfs -text
+# *.mp3 filter=lfs diff=lfs merge=lfs -text

@@ -1,8 +1,8 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "5.3",
+	"EngineAssociation": "5.5",
 	"Category": "",
-	"Description": "烬域：卡拉比亚战区 - 现代战区策略游戏",
+	"Description": "烬域：卡拉比亚战区 - 回合制4X策略 + FPS精英小队双视角现代战争游戏",
 	"Modules": [
 		{
 			"Name": "EmberRealm",
@@ -13,7 +13,11 @@
 				"CoreUObject",
 				"UMG",
 				"Slate",
-				"SlateCore"
+				"SlateCore",
+				"EnhancedInput",
+				"GameplayTasks",
+				"NavigationSystem",
+				"AIModule"
 			]
 		}
 	],
@@ -24,6 +28,33 @@
 			"TargetAllowList": [
 				"Editor"
 			]
+		},
+		{
+			"Name": "EnhancedInput",
+			"Enabled": true
+		},
+		{
+			"Name": "Niagara",
+			"Enabled": true
+		},
+		{
+			"Name": "ControlRig",
+			"Enabled": true
+		},
+		{
+			"Name": "SequencerScripting",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name": "AnimationLocomotionLibrary",
+			"Enabled": true
+		},
+		{
+			"Name": "PCG",
+			"Enabled": false
 		}
 	]
 }
