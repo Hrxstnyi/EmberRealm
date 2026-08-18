@@ -31,7 +31,6 @@ public class EmberRealm : ModuleRules
 			"RHI"
 		});
 
-		// 游戏模块子目录
 		PublicIncludePaths.AddRange(new string[]
 		{
 			"EmberRealm/Core",
@@ -43,11 +42,8 @@ public class EmberRealm : ModuleRules
 			"EmberRealm/Network"
 		});
 
-		// 启用UE5标准
 		DefaultBuildSettings = BuildSettingsVersion.V5;
 		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_5;
-
-		// 警告处理
 		bEnableExceptions = true;
 	}
 }
