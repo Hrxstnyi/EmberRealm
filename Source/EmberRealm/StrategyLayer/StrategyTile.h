@@ -1,8 +1,8 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
-
 #pragma once
 
 #include "CoreMinimal.h"
+#include "StrategyTile.generated.h"
 
 UENUM(BlueprintType)
 enum class ETerrainType : uint8

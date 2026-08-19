@@ -1,8 +1,9 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
-
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Engine/DataAsset.h"
+#include "ERFactionData.generated.h"
 
 UENUM(BlueprintType)
 enum class EFactionType : uint8
