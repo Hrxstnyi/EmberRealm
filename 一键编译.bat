@@ -23,7 +23,6 @@ set "UBT=%UE_PATH%\Engine\Build\BatchFiles\Build.bat"
 
 if not exist "%UBT%" (
     echo [错误] 找不到 Build.bat
-    echo 请确认 UE5.8 安装在 C:\Epic Games\虚幻引擎5\UE_5.8
     pause
     exit /b 1
 )
@@ -32,11 +31,11 @@ echo [2/4] 生成 Visual Studio 项目文件...
 "%UE_PATH%\Engine\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.exe" -projectfiles -project="%UPROJECT%" -game -rocket -progress
 echo.
 
-echo [3/4] 编译项目（Development Editor Win64）...
-echo       这可能需要 3-10 分钟，请耐心等待...
+echo [3/4] 编译项目（Development Editor Win64，禁用UBA）...
+echo       这可能需要 5-15 分钟，请耐心等待...
 echo.
 
-call "%UBT%" EmberRealmEditor Win64 Development -project="%UPROJECT%" -WaitMutex -FromMsBuild
+call "%UBT%" EmberRealmEditor Win64 Development -project="%UPROJECT%" -WaitMutex -FromMsBuild -NoUBA
 
 if %errorlevel% equ 0 (
     echo.
