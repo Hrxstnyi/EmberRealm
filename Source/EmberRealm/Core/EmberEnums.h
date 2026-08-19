@@ -2,17 +2,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "DataSystem/ERFactionData.h"
+#include "DataSystem/ERUnitData.h"
 #include "EmberEnums.generated.h"
-
-UENUM(BlueprintType)
-enum class EFactionType : uint8
-{
-	Garrison	UMETA(DisplayName = "戍卫军"),
-	Contract	UMETA(DisplayName = "合约团"),
-	Autonomy	UMETA(DisplayName = "自治同盟"),
-	Insider		UMETA(DisplayName = "内鬼"),
-	Neutral		UMETA(DisplayName = "中立")
-};
 
 UENUM(BlueprintType)
 enum class ETimePhase : uint8
@@ -42,34 +34,6 @@ enum class ETileType : uint8
 	Hub			UMETA(DisplayName = "交通枢纽"),
 	Base		UMETA(DisplayName = "军事基地"),
 	Mountain	UMETA(DisplayName = "山地")
-};
-
-UENUM(BlueprintType)
-enum class EUnitCategory : uint8
-{
-	Land		UMETA(DisplayName = "陆地单位"),
-	Air			UMETA(DisplayName = "空中单位"),
-	Naval		UMETA(DisplayName = "海上单位")
-};
-
-UENUM(BlueprintType)
-enum class EUnitType : uint8
-{
-	Militia, Infantry, Scout, Medic, Guerrilla,
-	CoastalDefense, AirDefense, FrontlineOfficer,
-	Commissar, Paratrooper, AirForce, Sniper,
-	Artillery, Armor, Engineer, Submarine, Warship
-};
-
-UENUM(BlueprintType)
-enum class ERankLevel : uint8
-{
-	SecondLieutenant, Lieutenant, Captain,
-	MajorII, MajorI, LieutenantColonelII, LieutenantColonelI,
-	ColonelII, ColonelI,
-	MajorGeneralIII, MajorGeneralII, MajorGeneralI,
-	LieutenantGeneralIII, LieutenantGeneralII, LieutenantGeneralI,
-	Commander
 };
 
 UENUM(BlueprintType)
