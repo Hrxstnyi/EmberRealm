@@ -36,73 +36,23 @@ TArray<UERUnitData*> UERDataLibrary::CreateDefaultUnitData(UObject* WorldContext
 		return Data;
 	};
 
-	CreateUnit(EUnitType::Infantry, TEXT("步兵"), EUnitDomain::Land,
-		40, 2, 100, 20, 1, 15, 2, 30, 0, 50, 2, 0,
-		ERankLevel::SecondLieutenant, EUnitType::Militia);
-
-	CreateUnit(EUnitType::Recon, TEXT("侦察兵"), EUnitDomain::Land,
-		35, 1, 60, 12, 1, 8, 4, 20, 0, 70, 5, 30,
-		ERankLevel::SecondLieutenant, EUnitType::Infantry);
-
-	CreateUnit(EUnitType::Medic, TEXT("医疗兵"), EUnitDomain::Land,
-		50, 2, 70, 8, 1, 10, 2, 25, 0, 40, 2, 0,
-		ERankLevel::FirstLieutenant, EUnitType::Infantry);
-
-	CreateUnit(EUnitType::Guerrilla, TEXT("游击兵"), EUnitDomain::Land,
-		45, 2, 80, 22, 1, 12, 3, 25, 0, 65, 3, 50,
-		ERankLevel::FirstLieutenant, EUnitType::Infantry);
-
-	CreateUnit(EUnitType::Coastal, TEXT("岸防兵"), EUnitDomain::Land,
-		60, 3, 120, 35, 2, 25, 1, 40, 0, 30, 1, 0,
-		ERankLevel::Captain, EUnitType::Artillery);
-
-	CreateUnit(EUnitType::AirDefense, TEXT("防空兵"), EUnitDomain::Land,
-		70, 3, 90, 40, 3, 20, 2, 50, 5, 35, 2, 0,
-		ERankLevel::Captain, EUnitType::Artillery);
-
-	CreateUnit(EUnitType::Officer, TEXT("前线军官"), EUnitDomain::Land,
-		80, 3, 90, 18, 1, 15, 2, 20, 0, 60, 3, 0,
-		ERankLevel::MajorII, EUnitType::Infantry);
-
-	CreateUnit(EUnitType::Commissar, TEXT("督战兵"), EUnitDomain::Land,
-		55, 2, 80, 15, 1, 12, 2, 20, 0, 55, 2, 0,
-		ERankLevel::FirstLieutenant, EUnitType::Infantry);
-
-	CreateUnit(EUnitType::Paratrooper, TEXT("空降兵"), EUnitDomain::Air,
-		90, 4, 90, 28, 1, 12, 3, 30, 10, 75, 3, 20,
-		ERankLevel::Captain, EUnitType::Infantry);
-
-	CreateUnit(EUnitType::Pilot, TEXT("航空兵"), EUnitDomain::Air,
-		120, 5, 80, 45, 3, 10, 4, 60, 20, 80, 4, 10,
-		ERankLevel::MajorI, EUnitType::Paratrooper);
-
-	CreateUnit(EUnitType::Sniper, TEXT("狙击兵"), EUnitDomain::Land,
-		75, 3, 70, 50, 4, 8, 2, 15, 0, 85, 3, 40,
-		ERankLevel::Captain, EUnitType::Infantry);
-
-	CreateUnit(EUnitType::Artillery, TEXT("阵地炮兵"), EUnitDomain::Land,
-		100, 4, 80, 55, 4, 15, 1, 80, 5, 25, 1, 0,
-		ERankLevel::Captain, EUnitType::Infantry);
-
-	CreateUnit(EUnitType::Armor, TEXT("装甲兵"), EUnitDomain::Land,
-		150, 5, 200, 40, 1, 35, 3, 40, 15, 40, 2, 0,
-		ERankLevel::MajorI, EUnitType::Infantry);
-
-	CreateUnit(EUnitType::Engineer, TEXT("工程兵"), EUnitDomain::Land,
-		55, 2, 70, 10, 1, 12, 2, 20, 0, 45, 2, 0,
-		ERankLevel::FirstLieutenant, EUnitType::Infantry);
-
-	CreateUnit(EUnitType::Submarine, TEXT("潜艇"), EUnitDomain::Sea,
-		180, 6, 150, 60, 2, 20, 2, 50, 25, 70, 3, 60,
-		ERankLevel::LieutenantColonelII, EUnitType::Warship);
-
-	CreateUnit(EUnitType::Warship, TEXT("舰艇"), EUnitDomain::Sea,
-		200, 6, 250, 50, 3, 40, 2, 100, 30, 35, 2, 0,
-		ERankLevel::LieutenantColonelII, EUnitType::Coastal);
-
-	CreateUnit(EUnitType::Militia, TEXT("民兵"), EUnitDomain::Land,
-		20, 1, 60, 12, 1, 8, 2, 15, 0, 30, 1, 0,
-		ERankLevel::SecondLieutenant, EUnitType::Militia);
+	CreateUnit(EUnitType::Infantry, TEXT("步兵"), EUnitDomain::Land, 40, 2, 100, 20, 1, 15, 2, 30, 0, 50, 2, 0, ERankLevel::SecondLieutenant, EUnitType::Militia);
+	CreateUnit(EUnitType::Recon, TEXT("侦察兵"), EUnitDomain::Land, 35, 1, 60, 12, 1, 8, 4, 20, 0, 70, 5, 30, ERankLevel::SecondLieutenant, EUnitType::Infantry);
+	CreateUnit(EUnitType::Medic, TEXT("医疗兵"), EUnitDomain::Land, 50, 2, 70, 8, 1, 10, 2, 25, 0, 40, 2, 0, ERankLevel::FirstLieutenant, EUnitType::Infantry);
+	CreateUnit(EUnitType::Guerrilla, TEXT("游击兵"), EUnitDomain::Land, 45, 2, 80, 22, 1, 12, 3, 25, 0, 65, 3, 50, ERankLevel::FirstLieutenant, EUnitType::Infantry);
+	CreateUnit(EUnitType::Coastal, TEXT("岸防兵"), EUnitDomain::Land, 60, 3, 120, 35, 2, 25, 1, 40, 0, 30, 1, 0, ERankLevel::Captain, EUnitType::Artillery);
+	CreateUnit(EUnitType::AirDefense, TEXT("防空兵"), EUnitDomain::Land, 70, 3, 90, 40, 3, 20, 2, 50, 5, 35, 2, 0, ERankLevel::Captain, EUnitType::Artillery);
+	CreateUnit(EUnitType::Officer, TEXT("前线军官"), EUnitDomain::Land, 80, 3, 90, 18, 1, 15, 2, 20, 0, 60, 3, 0, ERankLevel::MajorII, EUnitType::Infantry);
+	CreateUnit(EUnitType::Commissar, TEXT("督战兵"), EUnitDomain::Land, 55, 2, 80, 15, 1, 12, 2, 20, 0, 55, 2, 0, ERankLevel::FirstLieutenant, EUnitType::Infantry);
+	CreateUnit(EUnitType::Paratrooper, TEXT("空降兵"), EUnitDomain::Air, 90, 4, 90, 28, 1, 12, 3, 30, 10, 75, 3, 20, ERankLevel::Captain, EUnitType::Infantry);
+	CreateUnit(EUnitType::Pilot, TEXT("航空兵"), EUnitDomain::Air, 120, 5, 80, 45, 3, 10, 4, 60, 20, 80, 4, 10, ERankLevel::MajorI, EUnitType::Paratrooper);
+	CreateUnit(EUnitType::Sniper, TEXT("狙击兵"), EUnitDomain::Land, 75, 3, 70, 50, 4, 8, 2, 15, 0, 85, 3, 40, ERankLevel::Captain, EUnitType::Infantry);
+	CreateUnit(EUnitType::Artillery, TEXT("阵地炮兵"), EUnitDomain::Land, 100, 4, 80, 55, 4, 15, 1, 80, 5, 25, 1, 0, ERankLevel::Captain, EUnitType::Infantry);
+	CreateUnit(EUnitType::Armor, TEXT("装甲兵"), EUnitDomain::Land, 150, 5, 200, 40, 1, 35, 3, 40, 15, 40, 2, 0, ERankLevel::MajorI, EUnitType::Infantry);
+	CreateUnit(EUnitType::Engineer, TEXT("工程兵"), EUnitDomain::Land, 55, 2, 70, 10, 1, 12, 2, 20, 0, 45, 2, 0, ERankLevel::FirstLieutenant, EUnitType::Infantry);
+	CreateUnit(EUnitType::Submarine, TEXT("潜艇"), EUnitDomain::Sea, 180, 6, 150, 60, 2, 20, 2, 50, 25, 70, 3, 60, ERankLevel::LieutenantColonelII, EUnitType::Warship);
+	CreateUnit(EUnitType::Warship, TEXT("舰艇"), EUnitDomain::Sea, 200, 6, 250, 50, 3, 40, 2, 100, 30, 35, 2, 0, ERankLevel::LieutenantColonelII, EUnitType::Coastal);
+	CreateUnit(EUnitType::Militia, TEXT("民兵"), EUnitDomain::Land, 20, 1, 60, 12, 1, 8, 2, 15, 0, 30, 1, 0, ERankLevel::SecondLieutenant, EUnitType::Militia);
 
 	UE_LOG(LogTemp, Log, TEXT("[ERDataLibrary] 生成 %d 种默认兵种数据"), Result.Num());
 	return Result;
