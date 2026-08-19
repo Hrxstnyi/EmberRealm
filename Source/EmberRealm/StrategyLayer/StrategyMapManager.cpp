@@ -8,9 +8,7 @@ FStrategyMapManager::FStrategyMapManager()
 	UE_LOG(LogTemp, Log, TEXT("[StrategyMapManager] 地图管理器创建"));
 }
 
-FStrategyMapManager::~FStrategyMapManager()
-{
-}
+FStrategyMapManager::~FStrategyMapManager() = default;
 
 void FStrategyMapManager::InitializeMap(int32 InMapSizeX, int32 InMapSizeY)
 {
@@ -18,7 +16,6 @@ void FStrategyMapManager::InitializeMap(int32 InMapSizeX, int32 InMapSizeY)
 	MapSizeY = InMapSizeY;
 	Tiles.Empty();
 	bInitialized = true;
-
 	UE_LOG(LogTemp, Log, TEXT("[StrategyMapManager] 地图初始化: %dx%d"), MapSizeX, MapSizeY);
 }
 
@@ -30,7 +27,6 @@ bool FStrategyMapManager::LoadMapFromData(const TArray<FStrategyTile>& InTiles)
 		Tiles.Add(Tile.TileID, Tile);
 	}
 	bInitialized = Tiles.Num() > 0;
-
 	UE_LOG(LogTemp, Log, TEXT("[StrategyMapManager] 加载 %d 个阵地"), Tiles.Num());
 	return bInitialized;
 }
@@ -76,20 +72,19 @@ TArray<FStrategyTile*> FStrategyMapManager::GetAdjacentTiles(int32 TileID)
 
 bool FStrategyMapManager::ChangeTileController(int32 TileID, EFactionType NewController)
 {
-	if (FStrategyTile* Tile = GetTile(TileID))
-	{
-		EFactionType OldController = Tile->Controller;
-		Tile->Controller = NewController;
+	FStrategyTile* Tile = GetTile(TileID);
+	if (!Tile) return false;
 
-		UE_LOG(LogTemp, Log, TEXT("[StrategyMapManager] 阵地 %d 控制权变更: %d -> %d"),
-			TileID, (int32)OldController, (int32)NewController);
+	const EFactionType OldController = Tile->Controller;
+	Tile->Controller = NewController;
 
-		FEventBus::Get().Broadcast(EREvents::OnTerritoryChanged,
-			FString::Printf(TEXT("{\"tile\":%d,\"old\":%d,\"new\":%d}"), TileID, (int32)OldController, (int32)NewController));
+	UE_LOG(LogTemp, Log, TEXT("[StrategyMapManager] 阵地 %d 控制权变更: %d -> %d"),
+		TileID, (int32)OldController, (int32)NewController);
 
-		return true;
-	}
-	return false;
+	FEventBus::Get().Broadcast(EREvents::OnTerritoryChanged,
+		FString::Printf(TEXT("{\"tile\":%d,\"old\":%d,\"new\":%d}"), TileID, (int32)OldController, (int32)NewController));
+
+	return true;
 }
 
 int32 FStrategyMapManager::CountTransportHubs(EFactionType Faction) const
@@ -110,15 +105,9 @@ int32 FStrategyMapManager::CountResourceTiles(EFactionType Faction) const
 	int32 Count = 0;
 	for (const auto& Pair : Tiles)
 	{
-		if (Pair.Value.Controller == Faction)
+		if (Pair.Value.Controller == Faction && IsResourceTile(Pair.Value.TerrainType))
 		{
-			if (Pair.Value.TerrainType == ETerrainType::IronMine ||
-				Pair.Value.TerrainType == ETerrainType::OilField ||
-				Pair.Value.TerrainType == ETerrainType::CottonField ||
-				Pair.Value.TerrainType == ETerrainType::Residential)
-			{
-				Count++;
-			}
+			Count++;
 		}
 	}
 	return Count;
@@ -129,22 +118,10 @@ int32 FStrategyMapManager::CalculateTotalIncome(EFactionType Faction, bool bIsWa
 	int32 TotalIncome = 0;
 	for (const auto& Pair : Tiles)
 	{
-		if (Pair.Value.Controller == Faction)
-		{
-			int32 Tax = Pair.Value.TaxIncome;
-			if (bIsWarTime)
-			{
-				Tax = FMath::RoundToInt(Tax * 0.8f);
-			}
-			TotalIncome += Tax;
+		if (Pair.Value.Controller != Faction) continue;
 
-			int32 Resource = Pair.Value.ResourceOutput;
-			if (bIsWarTime)
-			{
-				Resource = FMath::RoundToInt(Resource * 0.7f);
-			}
-			TotalIncome += Resource;
-		}
+		TotalIncome += ApplyWarTimeDiscount(Pair.Value.TaxIncome, 0.8f, bIsWarTime);
+		TotalIncome += ApplyWarTimeDiscount(Pair.Value.ResourceOutput, 0.7f, bIsWarTime);
 	}
 	return TotalIncome;
 }
@@ -154,16 +131,9 @@ bool FStrategyMapManager::CanMoveTo(int32 FromTileID, int32 ToTileID, bool bHasA
 	const FStrategyTile* From = GetTile(FromTileID);
 	const FStrategyTile* To = GetTile(ToTileID);
 	if (!From || !To) return false;
-
 	if (!From->AdjacentTiles.Contains(ToTileID)) return false;
 
-	int32 ElevationDiff = FMath::Abs(To->Elevation - From->Elevation);
-	if (ElevationDiff >= 2 && !bHasAirborne)
-	{
-		return false;
-	}
-
-	return true;
+	return bHasAirborne || GetElevationDiff(FromTileID, ToTileID) < 2;
 }
 
 int32 FStrategyMapManager::CalculateMoveCost(int32 FromTileID, int32 ToTileID, bool bHasAirborne) const
@@ -172,18 +142,33 @@ int32 FStrategyMapManager::CalculateMoveCost(int32 FromTileID, int32 ToTileID, b
 	const FStrategyTile* To = GetTile(ToTileID);
 	if (!From || !To) return 999;
 
-	int32 BaseCost = 1;
-	int32 ElevationDiff = FMath::Abs(To->Elevation - From->Elevation);
+	const int32 ElevationDiff = GetElevationDiff(FromTileID, ToTileID);
+	if (bHasAirborne && ElevationDiff >= 2) return 1;
 
-	if (bHasAirborne && ElevationDiff >= 2)
-	{
-		return 1;
-	}
+	return To->Elevation > From->Elevation ? 1 + ElevationDiff : 1;
+}
 
-	if (To->Elevation > From->Elevation)
-	{
-		BaseCost += ElevationDiff;
-	}
+// ============================================================
+// 私有辅助函数
+// ============================================================
 
-	return BaseCost;
+bool FStrategyMapManager::IsResourceTile(ETerrainType Type)
+{
+	return Type == ETerrainType::IronMine
+		|| Type == ETerrainType::OilField
+		|| Type == ETerrainType::CottonField
+		|| Type == ETerrainType::Residential;
+}
+
+int32 FStrategyMapManager::ApplyWarTimeDiscount(int32 Value, float Ratio, bool bIsWarTime)
+{
+	return bIsWarTime ? FMath::RoundToInt(Value * Ratio) : Value;
+}
+
+int32 FStrategyMapManager::GetElevationDiff(int32 FromTileID, int32 ToTileID) const
+{
+	const FStrategyTile* From = GetTile(FromTileID);
+	const FStrategyTile* To = GetTile(ToTileID);
+	if (!From || !To) return 0;
+	return FMath::Abs(To->Elevation - From->Elevation);
 }
