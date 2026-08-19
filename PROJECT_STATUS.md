@@ -1,8 +1,8 @@
 # 项目状态 - 烬域：卡拉比亚战区
 
 **最后更新**: 2026-08-19  
-**当前阶段**: Phase 0 完成 + Phase 1 核心框架搭建  
-**版本**: 0.1.0 (Pre-Alpha)
+**当前阶段**: Phase 1 核心系统完成（框架+经济+战斗+单位）  
+**版本**: 0.2.0 (Pre-Alpha)
 
 ---
 
@@ -18,92 +18,56 @@
 - [x] GitHub 远端仓库: https://github.com/Hrxstnyi/EmberRealm
 - [x] Python 游戏启动器 (深色主题、存档管理、设置)
 
-### Phase 1 - 核心系统框架 ✅ (框架级)
-- [x] **事件总线** (Core/EventBus) - 订阅/发布模式，20+常用事件常量
-- [x] **游戏时钟** (Core/GameClock) - 三阶时间流速（季度/周/四小时），自动切换逻辑
-- [x] **游戏模式** (Core/ERGameModeBase) - 回合管理，回合开始/结束流程
-- [x] **游戏实例** (Core/ERGameInstance) - 全局数据，事件总线生命周期
-- [x] **战略地图管理器** (StrategyLayer/StrategyMapManager) - 阵地管理、控制权变更、收入计算、行军消耗
-- [x] **兵种数据资产** (DataSystem/ERUnitData) - 17种兵种、军衔体系、勋级技能
-- [x] **存档管理器** (SaveSystem/SaveManager) - 多槽位存档/加载/删除
-- [x] **FPS角色基类** (FPSLayer/FPSCharacterBase) - 移动、射击、瞄准基础框架
-- [x] **阵营数据资产** (DataSystem/ERFactionData) - 三大阵营配置
-- [x] **阵地数据结构** (StrategyLayer/StrategyTile) - 8种地形、海拔、经济属性
+### Phase 1 - 核心系统 ✅
+- [x] **事件总线** (Core/EventBus)
+- [x] **游戏时钟** (Core/GameClock) - 三阶时间流速
+- [x] **游戏模式** (Core/ERGameModeBase) - 回合管理
+- [x] **游戏实例** (Core/ERGameInstance) - 战略地图+经济系统+回合结算
+- [x] **战略地图管理器** (StrategyLayer/StrategyMapManager)
+- [x] **经济系统** (StrategyLayer/EconomySystem) - 6种资源、建造队列
+- [x] **战斗结算器** (StrategyLayer/CombatResolver) - 兵种克制、地形、士气
+- [x] **单位Actor** (StrategyLayer/UnitActor) - 可移动可攻击的部队
+- [x] **数据蓝图库** (DataSystem/ERDataLibrary) - 17种兵种+3大阵营默认数值
+- [x] **兵种数据资产** (DataSystem/ERUnitData)
+- [x] **存档管理器** (SaveSystem/SaveManager)
+- [x] **FPS角色基类** (FPSLayer/FPSCharacterBase)
+- [x] **阵营数据资产** (DataSystem/ERFactionData)
+- [x] **阵地数据结构** (StrategyLayer/StrategyTile)
+
+### 外部 Skills 集成 ✅
+- [x] skill-creator, frontend-design, code-simplifier
+- [x] document-skills, find-skills, ralph-loop
 
 ### 文档 ✅
-- [x] 游戏设计文档 (GDD.md) - 完整玩法设计
-- [x] 技术设计文档 (TDD.md) - 架构、模块、编码规范
-- [x] 桌游规则审查 (BoardGame_Review.md) - 10处漏洞+完善建议
-
----
-
-## 进行中
-
-- [ ] 战略层可玩原型 (地图渲染、单位移动、经济结算)
-- [ ] 战斗结算系统
-- [ ] AI对手基础逻辑
-
----
-
-## 待开始
-
-### Phase 1 剩余
-- [ ] 3D地图渲染 (World Partition)
-- [ ] 单位Actor与移动
-- [ ] 经济系统完整实现
-- [ ] 科技树框架
-- [ ] 自动战斗结算
-
-### Phase 2 - FPS原型
-- [ ] FPS关卡 (一个测试关卡)
-- [ ] 武器系统 (一种武器)
-- [ ] 敌人AI (基础巡逻/战斗)
-- [ ] 双视角切换
-
-### Phase 3 - 联动
-- [ ] FPS任务生成系统
-- [ ] 战果回写战略层
-
-### Phase 4+
-- [ ] AI完整逻辑
-- [ ] 内鬼系统
-- [ ] PVP联机
-- [ ] 历史时刻CG
-- [ ] Steam EA
-
----
-
-## 技术栈
-
-- **引擎**: Unreal Engine 5.5
-- **语言**: C++ (核心) + Blueprints (UI/交互)
-- **版本控制**: Git + GitHub
-- **启动器**: Python 3.8+ (Tkinter)
-- **目标平台**: PC (Windows)
+- [x] 游戏设计文档 (GDD.md)
+- [x] 技术设计文档 (TDD.md)
+- [x] 桌游规则审查 (BoardGame_Review.md)
+- [x] 项目级AI指令 (AGENTS.md)
+- [x] Skill使用指南 (SKILLS_USAGE.md)
+- [x] PVP匹配设计 (PVP_MATCHMAKING_DESIGN.md) - 特遣队介入、异步任务、残局保护
 
 ---
 
 ## 代码统计
-
-- 源文件: 20+
-- 代码行数: ~2500行
-- 文档: 3份，~5000字
-- Git提交: 6次
+- 源文件: 30+
+- 代码行数: ~3000行C++
+- 文档: 6份
 
 ---
 
-## 下一步建议
+## 下一步（你要做的）
 
-1. 在本地UE5.5中打开 `EmberRealm.uproject`，编译验证
-2. 创建测试地图，验证GameMode和GameClock
-3. 实现战略地图的3D渲染
-4. 实现单位移动和基本经济循环
+1. **在本地UE5.5中打开 `EmberRealm.uproject`，编译验证**（最关键）
+2. 编译通过后，在编辑器中调用 `ERDataLibrary.CreateDefaultUnitData()` 生成默认兵种
+3. 创建测试地图，放置UnitActor验证移动逻辑
+4. 告诉我编译结果，我继续写3D地图渲染和UI
 
 ---
 
 ## 已知问题
-
-- EventBus的Subscribe模板方法尚未完整实现（当前仅支持单参数委托）
+- EventBus的Subscribe模板方法尚未完整实现
 - 存档系统的数据序列化尚未对接游戏状态
-- FPS角色的武器组件(UERWeaponComponent)尚未创建
+- FPS角色的武器组件尚未创建
 - 缺少Content目录下的实际资源（地图、模型、材质）
+- UnitActor的AttackTile需要集成CombatResolver
+- 经济系统的BaseIncome和UpkeepCost需要外部系统计算后传入
