@@ -4,7 +4,6 @@
 #include "CoreMinimal.h"
 #include "EmberEnums.generated.h"
 
-/** 三大正统阵营 + 隐藏内鬼阵营 */
 UENUM(BlueprintType)
 enum class EFactionType : uint8
 {
@@ -15,7 +14,6 @@ enum class EFactionType : uint8
 	Neutral		UMETA(DisplayName = "中立")
 };
 
-/** 三阶时间流速 */
 UENUM(BlueprintType)
 enum class ETimePhase : uint8
 {
@@ -24,7 +22,6 @@ enum class ETimePhase : uint8
 	Battle		UMETA(DisplayName = "战役(四小时)")
 };
 
-/** 四季 */
 UENUM(BlueprintType)
 enum class ESeason : uint8
 {
@@ -34,7 +31,6 @@ enum class ESeason : uint8
 	Winter		UMETA(DisplayName = "冬季")
 };
 
-/** 阵地类型 */
 UENUM(BlueprintType)
 enum class ETileType : uint8
 {
@@ -48,7 +44,6 @@ enum class ETileType : uint8
 	Mountain	UMETA(DisplayName = "山地")
 };
 
-/** 单位大类 */
 UENUM(BlueprintType)
 enum class EUnitCategory : uint8
 {
@@ -57,7 +52,6 @@ enum class EUnitCategory : uint8
 	Naval		UMETA(DisplayName = "海上单位")
 };
 
-/** 兵种ID（对应规则全书练兵表） */
 UENUM(BlueprintType)
 enum class EUnitType : uint8
 {
@@ -67,7 +61,6 @@ enum class EUnitType : uint8
 	Artillery, Armor, Engineer, Submarine, Warship
 };
 
-/** 军衔等级 */
 UENUM(BlueprintType)
 enum class ERankLevel : uint8
 {
@@ -79,19 +72,18 @@ enum class ERankLevel : uint8
 	Commander
 };
 
-/** 行动牌费用梯度 */
 UENUM(BlueprintType)
 enum class ECardCost : uint8
 {
+	None = 0 UMETA(Hidden),
 	One = 1, Two = 2, Three = 3, Four = 4, Five = 5
 };
 
-/** 胜利条件类型 */
 UENUM(BlueprintType)
 enum class EVictoryType : uint8
 {
-	Hegemony,		// 战区霸权
-	Military,		// 军事碾压
-	Economic,		// 经济霸权
-	Insider			// 内鬼独立胜利
+	Hegemony,
+	Military,
+	Economic,
+	Insider
 };
