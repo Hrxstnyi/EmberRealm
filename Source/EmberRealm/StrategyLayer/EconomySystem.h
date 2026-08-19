@@ -3,10 +3,8 @@
 
 #include "CoreMinimal.h"
 #include "DataSystem/ERFactionData.h"
+#include "EconomySystem.generated.h"
 
-/**
- * 资源类型枚举
- */
 UENUM(BlueprintType)
 enum class EResourceType : uint8
 {
@@ -18,10 +16,6 @@ enum class EResourceType : uint8
 	Manpower	UMETA(DisplayName = "人力")
 };
 
-/**
- * 资源包结构体
- * 用于存储一组资源数量
- */
 USTRUCT(BlueprintType)
 struct FResourcePack
 {
@@ -29,19 +23,14 @@ struct FResourcePack
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "资源")
 	int32 Currency = 0;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "资源")
 	int32 Steel = 0;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "资源")
 	int32 Oil = 0;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "资源")
 	int32 Cotton = 0;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "资源")
 	int32 Ammo = 0;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "资源")
 	int32 Manpower = 0;
 
@@ -71,12 +60,8 @@ struct FResourcePack
 
 	bool CanAfford(const FResourcePack& Cost) const
 	{
-		return Currency >= Cost.Currency
-			&& Steel >= Cost.Steel
-			&& Oil >= Cost.Oil
-			&& Cotton >= Cost.Cotton
-			&& Ammo >= Cost.Ammo
-			&& Manpower >= Cost.Manpower;
+		return Currency >= Cost.Currency && Steel >= Cost.Steel && Oil >= Cost.Oil
+			&& Cotton >= Cost.Cotton && Ammo >= Cost.Ammo && Manpower >= Cost.Manpower;
 	}
 
 	void Deduct(const FResourcePack& Cost)

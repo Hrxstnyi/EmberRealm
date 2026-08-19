@@ -4,6 +4,7 @@
 #include "CoreMinimal.h"
 #include "DataSystem/ERUnitData.h"
 #include "StrategyLayer/StrategyTile.h"
+#include "CombatResolver.generated.h"
 
 USTRUCT(BlueprintType)
 struct FCombatUnit
