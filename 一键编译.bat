@@ -19,20 +19,33 @@ if not exist "%UPROJECT%" (
 echo [1/4] 查找 Unreal Engine 5 安装路径...
 
 set "UE_PATH="
-for /f "tokens=2*" %%a in ('reg query "HKLM\SOFTWARE\EpicGames\Unreal Engine" /s 2^>nul ^| findstr "InstalledDirectory"') do (
-    set "UE_PATH=%%b"
+
+for %%v in (5.9 5.8 5.7 5.6 5.5 5.4 5.3) do (
+    if exist "C:\Program Files\Epic Games\UE_%%v" set "UE_PATH=C:\Program Files\Epic Games\UE_%%v"
+    if exist "C:\Epic Games\UE_%%v" set "UE_PATH=C:\Epic Games\UE_%%v"
+    if exist "D:\Program Files\Epic Games\UE_%%v" set "UE_PATH=D:\Program Files\Epic Games\UE_%%v"
+    if exist "D:\Epic Games\UE_%%v" set "UE_PATH=D:\Epic Games\UE_%%v"
+    if exist "E:\Program Files\Epic Games\UE_%%v" set "UE_PATH=E:\Program Files\Epic Games\UE_%%v"
+    if exist "E:\Epic Games\UE_%%v" set "UE_PATH=E:\Epic Games\UE_%%v"
 )
 
 if "%UE_PATH%"=="" (
-    if exist "C:\Program Files\Epic Games\UE_5.8" set "UE_PATH=C:\Program Files\Epic Games\UE_5.8"
-    if exist "C:\Program Files\Epic Games\UE_5.7" set "UE_PATH=C:\Program Files\Epic Games\UE_5.7"
-    if exist "C:\Program Files\Epic Games\UE_5.6" set "UE_PATH=C:\Program Files\Epic Games\UE_5.6"
-    if exist "C:\Program Files\Epic Games\UE_5.5" set "UE_PATH=C:\Program Files\Epic Games\UE_5.5"
+    for /f "tokens=2*" %%a in ('reg query "HKLM\SOFTWARE\EpicGames\Unreal Engine" /s 2^>nul ^| findstr "InstalledDirectory"') do (
+        echo %%b | findstr /C:"5." >nul && set "UE_PATH=%%b"
+    )
 )
 
+if not "%UE_PATH%"=="" set "UE_PATH=%UE_PATH:~0,-1%"
+
 if "%UE_PATH%"=="" (
-    echo [错误] 找不到 Unreal Engine 安装路径
-    echo 请确认已通过 Epic Games Launcher 安装 UE5
+    echo [错误] 找不到 Unreal Engine 5 安装路径
+    echo.
+    echo 请手动指定UE5路径：
+    echo   右键此脚本 - 编辑 - 修改 set "UE_PATH=你的UE5路径"
+    echo.
+    echo 常见路径：
+    echo   C:\Program Files\Epic Games\UE_5.8
+    echo   D:\Epic Games\UE_5.8
     pause
     exit /b 1
 )
@@ -44,6 +57,7 @@ set "UBT=%UE_PATH%\Engine\Build\BatchFiles\Build.bat"
 
 if not exist "%UBT%" (
     echo [错误] 找不到 Build.bat: %UBT%
+    echo 可能UE安装不完整，请通过Epic Games Launcher验证安装
     pause
     exit /b 1
 )
