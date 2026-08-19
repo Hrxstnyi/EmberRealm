@@ -8,7 +8,6 @@
 
 class UCameraComponent;
 class USpringArmComponent;
-class UERWeaponComponent;
 
 UCLASS()
 class EMBERREALM_API AFPSCharacterBase : public ACharacter
@@ -24,10 +23,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "相机")
 	UCameraComponent* FPCamera;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "武器")
-	UERWeaponComponent* WeaponComponent;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "状态")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "状态")
 	float CurrentHealth = 100.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "状态")

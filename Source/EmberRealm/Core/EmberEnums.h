@@ -37,6 +37,14 @@ enum class ETileType : uint8
 };
 
 UENUM(BlueprintType)
+enum class EUnitCategory : uint8
+{
+	Land		UMETA(DisplayName = "陆地单位"),
+	Air			UMETA(DisplayName = "空中单位"),
+	Naval		UMETA(DisplayName = "海上单位")
+};
+
+UENUM(BlueprintType)
 enum class ECardCost : uint8
 {
 	None = 0 UMETA(Hidden),
