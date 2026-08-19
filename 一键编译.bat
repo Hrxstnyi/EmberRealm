@@ -15,15 +15,15 @@ if not exist "%UPROJECT%" (
     exit /b 1
 )
 
-echo [1/4] UE5.8 路径: C:\Epic Games\UE_5.8
-set "UE_PATH=C:\Epic Games\UE_5.8"
+echo [1/4] UE5.8 路径: C:\Epic Games\虚幻引擎5\UE_5.8
+set "UE_PATH=C:\Epic Games\虚幻引擎5\UE_5.8"
 echo.
 
 set "UBT=%UE_PATH%\Engine\Build\BatchFiles\Build.bat"
 
 if not exist "%UBT%" (
     echo [错误] 找不到 Build.bat
-    echo 请确认 UE5.8 安装在 C:\Epic Games\UE_5.8
+    echo 请确认 UE5.8 安装在 C:\Epic Games\虚幻引擎5\UE_5.8
     pause
     exit /b 1
 )
