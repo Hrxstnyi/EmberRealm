@@ -9,7 +9,7 @@ public class EmberRealmEditorTarget : TargetRules
 		Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.V5;
 		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_8;
-		BuildEnvironment = TargetBuildEnvironment.Unique;
+		bOverrideBuildEnvironment = true;
 		ExtraModuleNames.Add("EmberRealm");
 	}
 }
